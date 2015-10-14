@@ -30,18 +30,17 @@ def load_image(name, colorkey=None):
     return image, image.get_rect()
 
 def load_sound(name):
-    class NoneSound:
         def play(self):
             pass
-    if not pygame.mixer or not pygame.mixer.get_init():
-        return NoneSound()
-    fullname = os.path.join(sound_dir, name)
-    try:
-        sound = pygame.mixer.Sound(fullname)
-    except pygame.error:
-        print ('Cannot load sound: %s' % fullname)
-        raise SystemExit(str(geterror()))
-    return sound
+        if not pygame.mixer or not pygame.mixer.get_init():
+            return NoneSound()
+        fullname = os.path.join(sound_dir, name)
+        try:
+            sound = pygame.mixer.Sound(fullname)
+        except pygame.error:
+            print ('Cannot load sound: %s' % fullname)
+            raise SystemExit(str(geterror()))
+        return sound
 
 def bk(screen):
     background = pygame.Surface(screen.get_size())
@@ -68,6 +67,7 @@ class Rectangulo_Generico(pygame.sprite.Sprite):
 class Pared(Rectangulo_Generico):
 
     def chocada(self, tecla, cosa1, cosa2 = None):
+
         if cosa1.rect.left == self.rect.left and cosa1.rect.top == self.rect.top:
             if isinstance(cosa1, Jugador):
                 cosa1.rebotar(tecla)
@@ -119,7 +119,6 @@ class Caja(Rectangulo_Generico):
 
 class Jugador(Rectangulo_Generico):
 
-#moverse
     def moverse(self, tecla):
 
         if tecla.key == K_UP:
@@ -161,10 +160,6 @@ def main():
     pygame.display.flip()
 
 #Inicializacion de pantalla
-
-#Inicializacion de variables
-
-#Inicializacion de variables
 
 #Inicializacion de cosas
 
