@@ -78,8 +78,12 @@ class Pared(Rectangulo_Generico):
 
 class Zona_Apoyo(Rectangulo_Generico):
 
-    def setEstado(self, est):
-         self.estado = est
+    def ocupada(self, cosa):
+        if cosa.rect.left == self.rect.left and cosa.rect.top == self.rect.top:
+            if isinstance(cosa, Jugador):
+                self.estado = False
+            elif isinstance(cosa, Caja):
+                self.estado = True
 
 class Caja(Rectangulo_Generico):
 
@@ -110,13 +114,6 @@ class Caja(Rectangulo_Generico):
             caja.rebotar(tecla)
             jugador.rebotar(tecla)
 
-    def pociocionada(self, zona):
-        for i in range(len(zona)):
-
-            if zona[i].rect.left == self.rect.left and zona[i].rect.top == self.rect.top:
-                zona[i].setEstado(True)
-            else: zona[i].setEstado(False)
-
 class Jugador(Rectangulo_Generico):
 
     def moverse(self, tecla):
@@ -141,10 +138,9 @@ class Jugador(Rectangulo_Generico):
         elif tecla.key == K_RIGHT:
             self.rect.move_ip(-48, 0)
 
+class Fondo(Rectangulo_Generico):
+    pass
 #Clases
-
-
-
 
 #definir main<-todo corre dentro de esta
 def main():
@@ -163,6 +159,7 @@ def main():
 
 #Inicializacion de cosas
 
+    f1 = Fondo('fondo_generico.png',0 ,0)
     p1 = Pared('Pared.png', 0, 0)
     p2 = Pared('Pared.png', 0, 48)
     p3 = Pared('Pared.png', 0, 96)
@@ -208,14 +205,15 @@ def main():
 
     z1 = Zona_Apoyo('Zona.png', 336, 192)
     z2 = Zona_Apoyo('Zona.png', 336, 240)
-    z3 = Zona_Apoyo('Zona.png', 384, 192)
-    z4 = Zona_Apoyo('Zona.png', 384, 240)
+    z3 = Zona_Apoyo('Zona.png', 432, 192)
+    z4 = Zona_Apoyo('Zona.png', 432, 240)
     c1 = Caja('Caja.png', 384, 96)
     c2 = Caja('Caja.png', 192, 144)
     c3 = Caja('Caja.png', 192, 288)
     c4 = Caja('Caja.png', 432, 288)
     j1 = Jugador('Jugador.png', 96, 240)
 
+    fondo_render = pygame.sprite.RenderPlain((f1))
     paredes_render = pygame.sprite.RenderPlain((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42))
     zonas_render = pygame.sprite.RenderPlain((z1, z2, z3, z4))
     cajas_render = pygame.sprite.RenderPlain((c1, c2, c3, c4))
@@ -225,6 +223,7 @@ def main():
     zonas = [z1, z2, z3, z4]
     cajas = [c1, c2, c3, c4]
 
+    bandera = 0
 #Inicializacion de cosas
 
 #Bucle principal
@@ -242,10 +241,8 @@ def main():
                 j1.moverse(event)
 
                 for k in range(len(cajas)):
-                    cajas[k].mover(event, j1) # Cajas movidas
-                    cajas[k].pociocionada(zonas) # Ver si una caja esta en una zona. Repetir para todas las cajas
+                    cajas[k].mover(event, j1)
                     for l in range(len(cajas)):
-
                         if k != l:
                             cajas[k].chocada(event, cajas[l], j1) # Cajas que rebotan en cajas
 
@@ -254,16 +251,21 @@ def main():
                     for j in range(len(cajas)):
                         paredes[i].chocada(event, cajas[j], j1) # Cajas rebotan en paredes
 
-#                for m in range(len(zonas)): # Cambiar estado de las zonas
-#                    for n in range(len(cajas)):
-#                        if m != n:
-#                            zonas[m].setEstado(cajas[n])
+                for m in range(len(zonas)):
+                    for n in range(len(cajas)):
+                        zonas[m].ocupada(j1)
+                        zonas[m].ocupada(cajas[n])
 
-                #for r in range(len(zonas)): # Si todas las zonas estan actibadas o no
-                if zonas[0].estado and zonas[1].estado and zonas[2].estado and zonas[3].estado:
+                bandera = 0
+                for r in range(len(zonas)): # Si todas las zonas tienen una caja ensima se cambia el valor de bandera
+                    if zonas[r].estado:
+                        bandera += 1
+
+                if bandera == len(zonas):# Si bandera esta en True se reinicia la posicion del jugador
                     j1.rect.left = 96
                     j1.rect.top = 240
 
+        fondo_render.draw(screen)
         paredes_render.draw(screen)
         zonas_render.draw(screen)
         cajas_render.draw(screen)
