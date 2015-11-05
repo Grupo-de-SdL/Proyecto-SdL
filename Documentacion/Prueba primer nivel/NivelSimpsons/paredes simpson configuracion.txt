@@ -1,0 +1,2 @@
+iluminaciones amarillo -100
+medios tonos amarillo -9
