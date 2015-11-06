@@ -20,7 +20,7 @@ class General(pygame.sprite.Sprite): #Esta aclase abarca todos los objetos del j
 
 	def setImagen(self, imagen): #Metodo para setear la imagen del objeto
 		self.imagen = imagen
-		   
+
 	def setearPosicionInicial(self, posInicialX, posInicialY): #Metodo para setear la posicion inicial del objeto (en "x" y en "y")
 		self.rect.left = posInicialX
 		self.rect.top = posInicialY
@@ -39,14 +39,14 @@ class ZonaApoyo(General):	#Clase para las zonas de apoyo -> Las zonas de apoyo t
 		self.estado = False	#Esto es porque el unico atributo que tienen las zonas de apoyo se esta seteando por defecto y no con parametros
 
 class Jugador(CuadradoConMovimiento): #Clase para el jugador -> ¿Que tiene el jugador que los demás objetos no? -> Una velocidad y sonidos caracteristicos cuando gana o pierde
-	def __init__(self, imagen):		  #Las cajas se mueven...También podria decirse que tienen velocidad. Pero, ¿no se mueven a 
+	def __init__(self, imagen):		  #Las cajas se mueven...También podria decirse que tienen velocidad. Pero, ¿no se mueven a
 		General.__init__(self, imagen)	#la misma velocidad que el jugador? Por ende, en este caso, solo vamos a definirla en Jugador
 		self.velocidad = 48
-		self.hablarPerdio = None 
+		self.hablarPerdio = None
 		self.hablarGano = None
 
 #Nivel1() -> Setea las imagenes y posiciones de casi todos los elementos del nivel 1.
-def nivel1(jugadorPrincipal, caja1, caja2, caja3, caja4, zona1, zona2, zona3, zona4, piso): 
+def nivel1(jugadorPrincipal, caja1, caja2, caja3, caja4, zona1, zona2, zona3, zona4, piso):
 	#Jugador
 	imagenJugadorPrincipal= pygame.image.load("NivelSimpsons/jugadorHomero.png")
 	jugadorPrincipal.hablarPerdio =	pygame.mixer.Sound("NivelSimpsons/homeroDoh.wav")
@@ -89,14 +89,14 @@ def nivel1(jugadorPrincipal, caja1, caja2, caja3, caja4, zona1, zona2, zona3, zo
 
 #AdministradorNivel1() -> Administra todo el nivel uno: - Colisiones que pueden existir entre los objetos, -Controlar zonas de apoyo
 def AdministradorNivel1(jugadorPrincipal, cajaAnalizar, cajaX, cajaZ, cajaY, caja_posAnterior, rect_movimientoEnX, rect_movimientoEnY, j_posAnterior, pared1, pared2, pared3, pared4, pared5, pared6, pared7, pared8, pared9, pared10, zona1, zona2, zona3, zona4):
-	#Si el jugador principal choca contra algunas de las paredes 
+	#Si el jugador principal choca contra algunas de las paredes
 		#Vuelve a la posicion anterior antes de chocar
 	if ((jugadorPrincipal.colisiono(pared1)) or (jugadorPrincipal.colisiono(pared2))):
 		(jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) = j_posAnterior
-		 
+
 
 	if ((jugadorPrincipal.colisiono(pared3)) or (jugadorPrincipal.colisiono(pared4))):
-		(jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) = j_posAnterior 
+		(jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) = j_posAnterior
 
 	if ((jugadorPrincipal.colisiono(pared5)) or (jugadorPrincipal.colisiono(pared6))):
 		(jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) = j_posAnterior
@@ -111,7 +111,7 @@ def AdministradorNivel1(jugadorPrincipal, cajaAnalizar, cajaX, cajaZ, cajaY, caj
 	#Si el jugador colisiona (empuja) una caja (que va a ser la "caja_a_Analizar" -> Esto de la caja se explica más adelante)
 		#Va a preguntar si la caja, a su vez, colisiona con una pared, con una zona de apoyo o con otra caja.
 
-	if (jugadorPrincipal.colisiono(cajaAnalizar)): 
+	if (jugadorPrincipal.colisiono(cajaAnalizar)):
 				cajaAnalizar.mover(rect_movimientoEnX, rect_movimientoEnY)
 				if ((cajaAnalizar.colisiono(pared1)) or (cajaAnalizar.colisiono(pared2)) or (cajaAnalizar.colisiono(pared3)) or (cajaAnalizar.colisiono(pared4))):
 					cajaAnalizar.sonidoColision.play()
@@ -134,17 +134,17 @@ def AdministradorNivel1(jugadorPrincipal, cajaAnalizar, cajaX, cajaZ, cajaY, caj
 					(jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) = j_posAnterior
 
 				#Si alguna de las cajas (incluida la caja de los if anteriores) esta apoyada sobre una zona de apoyo:
-					#El estado de esta es "True" 
+					#El estado de esta es "True"
 					#De lo contrario -> Es "False"
 
 				if ((cajaAnalizar.colisiono(zona1)) or (cajaX.colisiono(zona1)) or (cajaY.colisiono(zona1)) or (cajaZ.colisiono(zona1))):
  					zona1.estado = True
  				else:
- 					zona1.estado = False 
+ 					zona1.estado = False
 
  				if ((cajaAnalizar.colisiono(zona2)) or (cajaX.colisiono(zona2)) or (cajaY.colisiono(zona2)) or (cajaZ.colisiono(zona2))):
  					zona2.estado = True
- 				else: 
+ 				else:
  					zona2.estado = False
 
  				if ((cajaAnalizar.colisiono(zona3)) or (cajaX.colisiono(zona3)) or (cajaY.colisiono(zona3)) or (cajaZ.colisiono(zona3))):
@@ -163,14 +163,14 @@ def AdministradorNivel1(jugadorPrincipal, cajaAnalizar, cajaX, cajaZ, cajaY, caj
  					jugadorPrincipal.hablarGano.play()
  					jugadorPrincipal.velocidad = 0
 
-def main(): 
+def main():
 	pygame.init() #Iniciamos pygame
 	
 	#Configuracion juego
 	ventana = pygame.display.set_mode((640, 480)) #Tamaño de la ventana
 	nombreVentana =	pygame.display.set_caption("Sokoban")	#Nombre del proyecto
 	salir_juego = False #Variable para definir el bucle infinito del juego
-	contadorNivel = 1   #Regulador de nivel 
+	contadorNivel = 1   #Regulador de nivel
 
 	#Creamos todos los objetos que usaremos y definimos las variables que utilizaran
 	j_posAnterior = (0, 0)	   #Guardara la posicion del jugador antes de realizar el siguiente movimiento
@@ -195,10 +195,10 @@ def main():
 	imagenFondo= pygame.image.load("imagenesBase/fondo.png")
 	fondo= General(imagenFondo)
 
-	if(contadorNivel == 1): 
+	if(contadorNivel == 1):
 		nivel1(jugadorPrincipal, caja1, caja2, caja3, caja4, zona1, zona2, zona3, zona4, piso) #Seteamos el nivel 1 -> ¿Por qué no paso el fondo tambien como parametro? Lo voy a tomar como general para todos los niveles
 		imagenPared_336x48 = pygame.image.load("NivelSimpsons/Simpsonpared 336x48.png")  #En este codigo, las paredes no son objetos iguales -> Tienen triangulos distintos ya las paredes se crearon por bloques y no por la union de objetos 48x48 seteados en diversas posiciones
-		imagenPared_48x96 = pygame.image.load("NivelSimpsons/Simpsonpared 48x96.png") 
+		imagenPared_48x96 = pygame.image.load("NivelSimpsons/Simpsonpared 48x96.png")
 		imagenPared_48x192 = pygame.image.load("NivelSimpsons/Simpsonpared 48x192.png")
 		imagenPared_48x48 = pygame.image.load("NivelSimpsons/Simpsonpared 48x48.png")
 		imagenPared_48x144 = pygame.image.load("NivelSimpsons/Simpsonpared 48x144.png")
@@ -218,12 +218,12 @@ def main():
 		pared_mi_verde.setearPosicionInicial(52, 144)
 		pared_abi_sinPintar = General(imagenPared_48x48) #ABI = Abajo izquierda
 		pared_abi_sinPintar.setearPosicionInicial(100, 288)
-		pared_abd_celeste = General(imagenPared_48x144)  #ABD = Abajo derecha 
+		pared_abd_celeste = General(imagenPared_48x144)  #ABD = Abajo derecha
 		pared_abd_celeste.setearPosicionInicial(436, 240)
 		pared_md_celeste = General(imagenPared_48x144)   #MD = medio derecha
 		pared_md_celeste.setearPosicionInicial(484, 144)
 		pared_ad_amarilla = General(imagenPared_144x48)  #AD = arriba derecha
-		pared_ad_amarilla.setearPosicionInicial(388, 96) 
+		pared_ad_amarilla.setearPosicionInicial(388, 96)
 		pared_sinAgarrar_amarilla = General(imagenPared_144x48) #AMsinAgararr = arriba medio sin agarrar
 		pared_sinAgarrar_amarilla.setearPosicionInicial(196, 144)
 
@@ -233,7 +233,7 @@ def main():
 		rect_movimientoEnX = 0 #Va a guardar el movimiento que debe realizarse en "x" segun la tecla pulsada
 		rect_movimientoEnY = 0 #Va a guardar el movimiento que debe realizarse en "y" segun la tecla pulsada
 
-		j_posAnterior = (jugadorPrincipal.rect.left, jugadorPrincipal.rect.top) 
+		j_posAnterior = (jugadorPrincipal.rect.left, jugadorPrincipal.rect.top)
 
 		if(contadorNivel == 1): #Esto podria sacarse ya que todos los niveles usan lo mismo (habria que ver con más niveles -> Pueden tener más cajas, menos, etc.)
 			caja1_posAnterior = (caja1.rect.left, caja1.rect.top)
@@ -259,7 +259,7 @@ def main():
 					rect_movimientoEnX = jugadorPrincipal.velocidad
 					jugadorPrincipal.mover(rect_movimientoEnX, 0)	
 				if (event.key == pygame.K_r): #Con R se resetea el nivel en el caso de que la persona se haya trabado
-					if(contadorNivel == 1):	#Si estabamos en el nivel 1  
+					if(contadorNivel == 1):	#Si estabamos en el nivel 1
 						jugadorPrincipal.hablarPerdio.play() #El jugador lanza su mensaje de "perdio"
 						jugadorPrincipal.setearPosicionInicial(148,192) #Todos los objetos con movimiento vuelven donde empezaban
 						caja1.setearPosicionInicial(148,144)
@@ -276,8 +276,8 @@ def main():
 			#Entonces, por cada vez que yo llame a esa funcion, aparte de controlar las cosas generales del nivel, regulare las colisiones
 			#de una sola caja contra todas las paredes, el jugador y las demás cajas.
 			#¿Que hace esto? -> Controlar solo una caja por cada llamada a la funcion que yo hago.
-			#De lo contario, tendria que hacer 4 ciclos de control de colisiones, uno para cada caja. 
-			#Todavia hay que analizar en profundidad que forma es mejor. 
+			#De lo contario, tendria que hacer 4 ciclos de control de colisiones, uno para cada caja.
+			#Todavia hay que analizar en profundidad que forma es mejor.
 				#Caja1
 			AdministradorNivel1(jugadorPrincipal, caja1, caja2, caja3, caja4, caja1_posAnterior, rect_movimientoEnX, rect_movimientoEnY, j_posAnterior, pared_ab_roja, pared_a_roja, pared_abm_rosa, pared_ai_rosa, pared_ad_amarilla, pared_sinAgarrar_amarilla, pared_md_celeste, pared_abd_celeste, pared_abi_sinPintar, pared_mi_verde, zona1, zona2, zona3, zona4)
 				#Caja2

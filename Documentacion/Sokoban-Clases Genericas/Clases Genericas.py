@@ -48,6 +48,108 @@ def bk(screen):
     background.fill((250, 250, 250))
     return background
 
+def nivel_1(imFondo, imPared, imZona,imCaja,imJugador):
+
+    f1 = Fondo(imFondo, 0, 0)
+
+    p1 = Pared(imPared, 152, 192)
+    p2 = Pared(imPared, 152, 240)
+    p3 = Pared(imPared, 152, 288)
+    p4 = Pared(imPared, 200, 192)
+    p5 = Pared(imPared, 200, 288)
+    p6 = Pared(imPared, 248, 144)
+    p7 = Pared(imPared, 248, 192)
+    p8 = Pared(imPared, 248, 288)
+    p9 = Pared(imPared, 296, 144)
+    p10 = Pared(imPared, 296, 288)
+    p11 = Pared(imPared, 344, 144)
+    p12 = Pared(imPared, 344, 240)
+    p13 = Pared(imPared, 344, 288)
+    p14 = Pared(imPared, 392, 144)
+    p15 = Pared(imPared, 392, 240)
+    p16 = Pared(imPared, 440, 144)
+    p17 = Pared(imPared, 440, 192)
+    p18 = Pared(imPared, 440, 240)
+
+    z1 = Zona_Apoyo(imZona, 200, 240)
+    z2 = Zona_Apoyo(imZona, 392, 192)
+
+    c1 = Caja(imCaja, 248, 240)
+    c2 = Caja(imCaja, 344, 192)
+
+    j1 = Jugador(imJugador, 296, 240)
+
+    fondo = f1
+    paredes = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18]
+    zonas = [z1, z2]
+    cajas = [c1, c2]
+    jugador = j1
+
+    return fondo, paredes, zonas, cajas, jugador
+
+def nivel_2(imFondo, imPared, imZona, imCaja, imJugador):
+
+    f1 = Fondo(imFondo, 0, 0)
+
+    p1 = Pared(imPared, 104, 0)
+    p2 = Pared(imPared, 104, 48)
+    p3 = Pared(imPared, 104, 96)
+    p4 = Pared(imPared, 104, 144)
+    p5 = Pared(imPared, 104, 192)
+    p6 = Pared(imPared, 152, 0)
+    p7 = Pared(imPared, 152, 192)
+    p8 = Pared(imPared, 152, 240)
+    p9 = Pared(imPared, 152, 288)
+    p10 = Pared(imPared, 152, 336)
+    p11 = Pared(imPared, 152, 384)
+    p12 = Pared(imPared, 200, 0)
+    p13 = Pared(imPared, 200, 192)
+    p14 = Pared(imPared, 200, 240)
+    p15 = Pared(imPared, 200, 384)
+    p16 = Pared(imPared, 248, 0)
+    p17 = Pared(imPared, 248, 384)
+    p18 = Pared(imPared, 296, 0)
+    p19 = Pared(imPared, 296, 48)
+    p20 = Pared(imPared, 296, 96)
+    p21 = Pared(imPared, 296, 144)
+    p22 = Pared(imPared, 296, 192)
+    p23 = Pared(imPared, 296, 384)
+    p24 = Pared(imPared, 344, 144)
+    p25 = Pared(imPared, 344, 192)
+    p26 = Pared(imPared, 344, 288)
+    p27 = Pared(imPared, 344, 336)
+    p28 = Pared(imPared, 344, 384)
+    p29 = Pared(imPared, 392, 96)
+    p30 = Pared(imPared, 392, 144)
+    p31 = Pared(imPared, 392, 192)
+    p32 = Pared(imPared, 392, 336)
+    p33 = Pared(imPared, 440, 96)
+    p34 = Pared(imPared, 440, 336)
+    p35 = Pared(imPared, 488, 96)
+    p36 = Pared(imPared, 488, 144)
+    p37 = Pared(imPared, 488, 192)
+    p38 = Pared(imPared, 488, 240)
+    p39 = Pared(imPared, 488, 288)
+    p40 = Pared(imPared, 488, 336)
+
+    z1 = Zona_Apoyo(imZona, 440, 144)
+    z2 = Zona_Apoyo(imZona, 440, 192)
+    z3 = Zona_Apoyo(imZona, 440, 240)
+
+    c1 = Caja(imCaja, 200, 96)
+    c2 = Caja(imCaja, 200, 144)
+    c3 = Caja(imCaja, 248, 96)
+
+    j1 = Jugador(imJugador, 152, 48)
+
+    fondo = f1
+    paredes = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40]
+    zonas = [z1, z2, z3]
+    cajas = [c1, c2, c3]
+    jugador = j1
+
+    return fondo, paredes, zonas, cajas, jugador
+
 #funciones
 
 #Clases
@@ -159,120 +261,66 @@ def main():
 
 #Inicializacion de cosas
 
-    f1 = Fondo('fondo_generico.png',0 ,0)
-    p1 = Pared('Pared.png', 0, 0)
-    p2 = Pared('Pared.png', 0, 48)
-    p3 = Pared('Pared.png', 0, 96)
-    p4 = Pared('Pared.png', 0, 144)
-    p5 = Pared('Pared.png', 0, 192)
-    p6 = Pared('Pared.png', 0, 240)
-    p7 = Pared('Pared.png', 0, 288)
-    p8 = Pared('Pared.png', 0, 336)
-    p9 = Pared('Pared.png', 0, 384)
-    p10 = Pared('Pared.png', 0, 432)
-    p11 = Pared('Pared.png', 48, 0)
-    p12 = Pared('Pared.png', 48, 432)
-    p13 = Pared('Pared.png', 96, 0)
-    p14 = Pared('Pared.png', 96, 432)
-    p15 = Pared('Pared.png', 144, 0)
-    p16 = Pared('Pared.png', 144, 432)
-    p17 = Pared('Pared.png', 192, 0)
-    p18 = Pared('Pared.png', 192, 432)
-    p19 = Pared('Pared.png', 240, 0)
-    p20 = Pared('Pared.png', 240, 432)
-    p21 = Pared('Pared.png', 288, 0)
-    p22 = Pared('Pared.png', 288, 432)
-    p23 = Pared('Pared.png', 336, 0)
-    p24 = Pared('Pared.png', 336, 432)
-    p25 = Pared('Pared.png', 384, 0)
-    p26 = Pared('Pared.png', 384, 432)
-    p27 = Pared('Pared.png', 432, 0)
-    p28 = Pared('Pared.png', 432, 432)
-    p29 = Pared('Pared.png', 480, 0)
-    p30 = Pared('Pared.png', 480, 432)
-    p31 = Pared('Pared.png', 528, 0)
-    p32 = Pared('Pared.png', 528, 432)
-    p33 = Pared('Pared.png', 576, 0)
-    p34 = Pared('Pared.png', 576, 48)
-    p35 = Pared('Pared.png', 576, 96)
-    p36 = Pared('Pared.png', 576, 144)
-    p37 = Pared('Pared.png', 576, 192)
-    p38 = Pared('Pared.png', 576, 240)
-    p39 = Pared('Pared.png', 576, 288)
-    p40 = Pared('Pared.png', 576, 336)
-    p41 = Pared('Pared.png', 576, 384)
-    p42 = Pared('Pared.png', 576, 432)
+    for juego in range(1, 3):#Requiere de un "range" de x+1, donde x es el numero de nivele implementados
+        if juego == 1:
+            fondo, paredes, zonas, cajas, jugador = nivel_1('Fondo.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
+        if juego == 2:
+            fondo, paredes, zonas, cajas, jugador = nivel_2('Fondo.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
 
-    z1 = Zona_Apoyo('Zona.png', 336, 192)
-    z2 = Zona_Apoyo('Zona.png', 336, 240)
-    z3 = Zona_Apoyo('Zona.png', 432, 192)
-    z4 = Zona_Apoyo('Zona.png', 432, 240)
-    c1 = Caja('Caja.png', 384, 96)
-    c2 = Caja('Caja.png', 192, 144)
-    c3 = Caja('Caja.png', 192, 288)
-    c4 = Caja('Caja.png', 432, 288)
-    j1 = Jugador('Jugador.png', 96, 240)
+        fondo_render = pygame.sprite.RenderPlain((fondo))
+        paredes_render = pygame.sprite.RenderPlain((paredes))
+        zonas_render = pygame.sprite.RenderPlain((zonas))
+        cajas_render = pygame.sprite.RenderPlain((cajas))
+        jugador_render = pygame.sprite.RenderPlain((jugador))
 
-    fondo_render = pygame.sprite.RenderPlain((f1))
-    paredes_render = pygame.sprite.RenderPlain((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42))
-    zonas_render = pygame.sprite.RenderPlain((z1, z2, z3, z4))
-    cajas_render = pygame.sprite.RenderPlain((c1, c2, c3, c4))
-    jugador_render = pygame.sprite.RenderPlain((j1))
-
-    paredes = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42]
-    zonas = [z1, z2, z3, z4]
-    cajas = [c1, c2, c3, c4]
-
-    bandera = 0
+        bandera = 0
 #Inicializacion de cosas
 
 #Bucle principal
-    going = True
-    while going:
-        clock.tick(60)
+        going = True
+        while going:
+            clock.tick(60)
 #Manejar eventos de salida
-        screen.blit(background, (0, 0))
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                going = False
-            elif event.type == KEYDOWN and event.key == K_ESCAPE:
-                going = False
-            if event.type == KEYUP:
-                j1.moverse(event)
+            screen.blit(background, (0, 0))
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    going = False
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                    going = False
+                if event.type == KEYUP:
+                    jugador.moverse(event)
 
-                for k in range(len(cajas)):
-                    cajas[k].mover(event, j1)
-                    for l in range(len(cajas)):
-                        if k != l:
-                            cajas[k].chocada(event, cajas[l], j1) # Cajas que rebotan en cajas
+                    for k in range(len(cajas)):
+                        cajas[k].mover(event, jugador)
+                        for l in range(len(cajas)):
+                            if k != l:
+                                cajas[k].chocada(event, cajas[l], jugador) # Cajas que rebotan en cajas
 
-                for i in range(len(paredes)):
-                    paredes[i].chocada(event, j1) # Juagador rebota en paredes
-                    for j in range(len(cajas)):
-                        paredes[i].chocada(event, cajas[j], j1) # Cajas rebotan en paredes
+                    for i in range(len(paredes)):
+                        paredes[i].chocada(event, jugador) # Juagador rebota en paredes
+                        for j in range(len(cajas)):
+                            paredes[i].chocada(event, cajas[j], jugador) # Cajas rebotan en paredes
 
-                for m in range(len(zonas)):
-                    for n in range(len(cajas)):
-                        zonas[m].ocupada(j1)
-                        zonas[m].ocupada(cajas[n])
+                    for m in range(len(zonas)):
+                        for n in range(len(cajas)):
+                            zonas[m].ocupada(jugador)
+                            zonas[m].ocupada(cajas[n])
 
-                bandera = 0
-                for r in range(len(zonas)): # Si todas las zonas tienen una caja ensima se cambia el valor de bandera
-                    if zonas[r].estado:
-                        bandera += 1
+                    bandera = 0
+                    for r in range(len(zonas)): # Si todas las zonas tienen una caja ensima se cambia el valor de bandera
+                        if zonas[r].estado:
+                            bandera += 1
 
-                if bandera == len(zonas):# Si bandera esta en True se reinicia la posicion del jugador
-                    j1.rect.left = 96
-                    j1.rect.top = 240
+                    if bandera == len(zonas):# Si bandera esta en True se reinicia la posicion del jugador
+                        going = False
 
-        fondo_render.draw(screen)
-        paredes_render.draw(screen)
-        zonas_render.draw(screen)
-        cajas_render.draw(screen)
-        jugador_render.draw(screen)
+            fondo_render.draw(screen)
+            paredes_render.draw(screen)
+            zonas_render.draw(screen)
+            cajas_render.draw(screen)
+            jugador_render.draw(screen)
 
-#<-toda la pantalla
-        pygame.display.update()
+            pygame.display.update()
 
     pygame.quit()
 
