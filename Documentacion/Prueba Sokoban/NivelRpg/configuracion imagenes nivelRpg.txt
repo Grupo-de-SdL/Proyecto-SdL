@@ -1,0 +1,6 @@
+Medios tonos: 100, -100, 100
+Sombras: -100, -100, 100
+Iluminacion: 0, 0, 0
+Tono: -23
+Saturacion: 36
+Luminosidad: -35

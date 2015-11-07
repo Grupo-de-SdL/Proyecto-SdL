@@ -263,9 +263,9 @@ def main():
 
     for juego in range(1, 3):#Requiere de un "range" de x+1, donde x es el numero de nivele implementados
         if juego == 1:
-            fondo, paredes, zonas, cajas, jugador = nivel_1('Fondo.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
+            fondo, paredes, zonas, cajas, jugador = nivel_1('fondo_generico.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
         if juego == 2:
-            fondo, paredes, zonas, cajas, jugador = nivel_2('Fondo.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
+            fondo, paredes, zonas, cajas, jugador = nivel_2('fondo_generico.png', 'Pared.png', 'Zona.png', 'Caja.png', 'Jugador.png')
 
         fondo_render = pygame.sprite.RenderPlain((fondo))
         paredes_render = pygame.sprite.RenderPlain((paredes))
