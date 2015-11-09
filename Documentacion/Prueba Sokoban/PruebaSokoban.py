@@ -5,7 +5,7 @@ from pygame.locals import * #importamos todos los modulos de pygame
 class Rectangulo(pygame.sprite.Sprite): #Esta es la clase abarca todos los objetos del juego
 	def __init__ (self, imagen, posInicialX, posInicialY): #Todos tienen una imagen y una posicion inicial
 		pygame.sprite.Sprite.__init__(self)
-		self.image = imagen        
+		self.image = imagen
 		self.rect = self.image.get_rect()  #Rectangulo de la imagen (necesitamos el rectangulo para las colisiones)
 		self.rect.left = posInicialX
 		self.rect.top = posInicialY			
@@ -21,13 +21,13 @@ class Rectangulo(pygame.sprite.Sprite): #Esta es la clase abarca todos los objet
 		self.rect.top = posInicialY
 
 class RectanguloConMovimiento(Rectangulo): #¿Que objetos se moveran? -> El jugador y las cajas
-	def __init__(self, imagen, posInicialX, posInicialY):		 
+	def __init__(self, imagen, posInicialX, posInicialY):
 			Rectangulo.__init__(self, imagen, posInicialX, posInicialY)	
 			self.sonidoColision = None	#Sonido que hara el objeto al colisionar
 
 	def colisiono(self, rectanguloChoque):	#Ese metodo nos dira si objeto colisiono con otro objeto que le pasamos como parametro
 		colision = False					#¿Por qué esta en esta clase? -> El jugador y las cajas son los que chocan contra otras cosas
-		if (self.rect.colliderect(rectanguloChoque)): 
+		if (self.rect.colliderect(rectanguloChoque)):
 			colision = True
 		return colision				
 
@@ -90,7 +90,7 @@ def cargarMenu():
 	imagenFondo = pygame.image.load("Menu/fondo.png")
 	fondoMenu = Fondo(imagenFondo, 0, 0)
 	fondo = fondoMenu
-	cursor = cursor1  
+	cursor = cursor1
 	boton_1 = boton1
 	boton_3 = boton3
 	boton_4 = boton4
@@ -112,7 +112,7 @@ def cargarCreditos():
 
 #cargaNivel1() -> Crea y setea las imagenes, sonidos y posiciones de todos los elementos del nivel 1.
 def cargaNivel1():
-	#Jugador 
+	#Jugador
 	imagenJugadorPrincipal= pygame.image.load("NivelSimpsons/jugadorHomero.png")
 	jugadorPrincipal = Jugador(imagenJugadorPrincipal, 148, 192)
 	jugadorPrincipal.sonidoPerdio =	pygame.mixer.Sound("NivelSimpsons/homeroDoh.wav")
@@ -170,7 +170,7 @@ def cargaNivel1():
 	fondo = fondoNivel1
 	jugador = jugadorPrincipal
 	piso = piso1
-	paredes= [pared_a_roja, pared_ab_roja, pared_ai_rosa, pared_abm_rosa, pared_mi_verde, pared_abi_sinPintar, pared_abd_celeste, pared_md_celeste, pared_ad_amarilla, pared_sinAgarrar_amarilla]   
+	paredes= [pared_a_roja, pared_ab_roja, pared_ai_rosa, pared_abm_rosa, pared_mi_verde, pared_abi_sinPintar, pared_abd_celeste, pared_md_celeste, pared_ad_amarilla, pared_sinAgarrar_amarilla]
 	zonas= [zona1, zona2, zona3, zona4]
 	cajas= [caja1, caja2, caja3, caja4]
 
@@ -239,6 +239,69 @@ def cargarNivel2():
 	cajas = [caja1, caja2, caja3]
 	return paredes, zonas, cajas, jugador, piso, fondo
 
+#cargarNivel3() -> Crea y setea las imagenes, sonidos y posiciones de todos los elementos del nivel 3.
+def cargarNivel3():
+    #Jugador
+    imagenJugadorPrincipal = pygame.image.load("")
+    jugadorPrincipal= Jugador(imagenJugadorPrincipal, 296, 240)
+    jugadorPrincipal.sonidoPerdio = pygame.mixer.Sound("")
+    jugadorPrincipal.sonidoGano = pygame.mixer.Sound("")
+    jugadorPrincipal.sonidoPerdio.set_volume(0.05)
+    jugadorPrincipal.sonidoGano.set_volume(0.05)
+    #Cajas
+    imagenCaja = pygame.image.load("")
+    caja1= RectanguloConMovimiento(imagenCaja, 248, 192)
+    caja2= RectanguloConMovimiento(imagenCaja, 248, 240)
+    caja3= RectanguloConMovimiento(imagenCaja, 296, 288)
+    caja4= RectanguloConMovimiento(imagenCaja, 344, 288)
+    caja1.sonidoColision = pygame.mixer.Sound("")
+    caja2.sonidoColision = pygame.mixer.Sound("")
+    caja3.sonidoColision = pygame.mixer.Sound("")
+    caja4.sonidoColision = pygame.mixer.Sound("")
+    caja1.sonidoColision.set_volume(0.05)
+    caja2.sonidoColision.set_volume(0.05)
+    caja3.sonidoColision.set_volume(0.05)
+    caja4.sonidoColision.set_volume(0.05)
+    #Zonas de apoyo
+    imagenZona = pygame.image.load("")
+    zona1 = ZonaApoyo(imagenZona, 152, 240)
+    zona2 = ZonaApoyo(imagenZona, 248, 96)
+    zona3 = ZonaApoyo(imagenZona, 296, 336)
+    zona4 = ZonaApoyo(imagenZona, 392, 192)
+    #Paredes
+    imagenPared_48x96 = pygame.image.load("")
+    imagenPared_144x48 = pygame.image.load("")
+    imagenPared_48x48 = pygame.image.load("")
+    pared_a_celeste = Rectangulo(imagenPared_144x48, 200, 48)
+    pared_ai_azul = Rectangulo(imagenPared_48x96, 200, 96)
+    pared_ad_azul = Rectangulo(imagenPared_48x48, 296, 96)
+    pared_mia_celeste = Rectangulo(imagenPared_144x48, 104, 192)
+    pared_md_celeste = Rectangulo(imagenPared_144x48, 296, 144)
+    pared_mi_azul = Rectangulo(imagenPared_48x96, 104, 240)
+    pared_md_azul = Rectangulo(imagenPared_48x96, 440, 144)
+    pared_miab_celeste = Rectangulo(imagenPared_144x48, 152, 288)
+    pared_mdab_celeste = Rectangulo(imagenPared_144x48, 344, 240)
+    pared_abi_azul = Rectangulo(imagenPared_48x48, 248, 336)
+    pared_abd_azul = Rectangulo(imagenPared_48x96, 344, 288)
+    pared_ab_celeste = Rectangulo(imagenPared_144x48, 248, 384)
+    #Piso
+    imagenPiso = pygame.image.load("")
+    piso1 = Rectangulo(imagenPiso, 144, 48)
+    #Fondo
+    imagenFondo = pygame.image.load("")
+    fondoNivel3 = Rectangulo(imagenFondo, 0, 0)
+    fondoNivel3.sonidoFondo = pygame.mixer.music.load("")
+    pygame.mixer.music.set_volume(0.05)
+    pygame.mixer.music.play(10)
+#Lo mismo que en la funcion anterior. Notese que guardamos ciertas cosas en listas. Generalmente los objetos de un cierto tipo que a la vez son más de uno.
+    fondo = fondoNivel3
+    jugador = jugadorPrincipal
+    piso = piso1
+    paredes = [pared_a_celeste, pared_ai_azul, pared_ad_azul, pared_mia_celeste, pared_md_celeste, pared_mi_azul, pared_md_azul, pared_miab_celeste, pared_mdab_celeste, pared_abi_azul, pared_abd_azul, pared_ab_celeste]
+    zonas = [zona1, zona2, zona3, zona4]
+    cajas = [caja1, caja2, caja3, caja4]
+    return paredes, zonas, cajas, jugador, piso, fondo
+
 #administrarNivel() -> Administra todas las colisiones y determina si el nivel ha terminado o no
 def administrarNivel(paredes, zonas, cajas, jugador, j_posAnterior, caja1_posAnterior, caja2_posAnterior, caja3_posAnterior, caja4_posAnterior, rect_movimientoEnX, rect_movimientoEnY):
 	nivelCompleto = False	#Lo usaremos para configurar si el nivel esta completo o no
@@ -246,18 +309,18 @@ def administrarNivel(paredes, zonas, cajas, jugador, j_posAnterior, caja1_posAnt
 	colisionCajaJugador = False	 #Para saber si el jugador choca contra una caja
 	colisionCajaPared = False	 #Para saber si la caja choco contra una pared
 	colisionCajaCaja = False	 #Para saber si la caja choco contra otra caja
-	cantidadZonasActivas = 0     #Contendra la cantidad de zonas que tienen una caja encima 
+	cantidadZonasActivas = 0     #Contendra la cantidad de zonas que tienen una caja encima
 	indiceChocada = 0            #Se explicara en breve
 
 	for a in range(len(paredes)):  	#Vamos recorriendo la lista de paredes y preguntamos si el jugador choco con alguna de todas estas
 		if jugador.colisiono(paredes[a]):
 			(jugador.rect.left, jugador.rect.top) = j_posAnterior #Si es asi, que el jugador vuelva a su posicion anterior
-			colisionParedJugador = True #Existe una colision entre Pared y jugador. 
+			colisionParedJugador = True #Existe una colision entre Pared y jugador.
 			a = len(paredes) #Terminamos el bucle. Ya encontramos la colision que buscabamos
 
 	if (colisionParedJugador != True): #Si no choco con una pared...
 		for b in range(len(cajas)):    #Vamos a ver si choco contra alguna de todas las cajas...
-			if jugador.colisiono(cajas[b]): #Si fue asi, 
+			if jugador.colisiono(cajas[b]): #Si fue asi,
 				cajas[b].mover(rect_movimientoEnX, rect_movimientoEnY) #Movemos la caja
 				indiceChocada = b #Guardamos el indice de la caja que el jugador choco. Esta caja especifica es la que tendremos que mover
 				colisionCajaJugador = True	
@@ -313,7 +376,7 @@ def administrarNivel(paredes, zonas, cajas, jugador, j_posAnterior, caja1_posAnt
 
 	for f in range(len(cajas)): #Ahora si, con todas las zonas limpias, preguntamos cuantas estan activas para este momento determinado.
 		for g in range(len(zonas)): #Con este for anidado podemos contrastar cada caja contra cada zona de apoyo
-			if cajas[f].colisiono(zonas[g]): 
+			if cajas[f].colisiono(zonas[g]):
 				zonas[g].estado = True #La caja colisiono con alguna de las zonas. Seteamos el estado de la zona de apoyo a = True
 				cantidadZonasActivas = cantidadZonasActivas + 1 #Suma uno a la cantidad de zonas activas
 				g = len(zonas) #Ya encontramos la colision que queriamos. Pasamos a preguntar por la siguiente caja
@@ -372,7 +435,7 @@ def main():
 			#RenderPlain nos permite formar grupos de objetos tipo "sprite"
 			piso_render = pygame.sprite.RenderPlain((piso)) #Entonces por ejemplo, piso_render = contendra un grupo dibujable de 1 objeto (hay un solo piso por nivel)
 			paredes_render = pygame.sprite.RenderPlain((paredes)) #paredes_render -> contendra un grupo dibujable de "n" objetos pared
-			zonas_render = pygame.sprite.RenderPlain((zonas)) 
+			zonas_render = pygame.sprite.RenderPlain((zonas))
 			cajas_render = pygame.sprite.RenderPlain((cajas))
 			jugador_render = pygame.sprite.RenderPlain((jugador))
 			vecesCantoVictoria = 0 #Si una persona, a pesar de que el jugador este frenado, sigue tocando teclas despues de ganar el nivel -> El mensaje de victoria se repetira nuevamente
@@ -403,7 +466,7 @@ def main():
 						sys.exit()
 
 				actualizarMenu(ventana, cursor, boton_1, boton_3, boton_4, fondo)
-				  
+
 			if ((juego > 1) and (juego < 4)):   	
 				rect_movimientoEnX = 0 #Va a guardar el movimiento que debe realizarse en "x" segun la tecla pulsada
 				rect_movimientoEnY = 0 #Va a guardar el movimiento que debe realizarse en "y" segun la tecla pulsada
@@ -474,7 +537,7 @@ def main():
 							pygame.quit()
 							sys.exit()
 
-					#Contramos el nivel en cada ciclo -> ¿Gano el nivel? 
+					#Contramos el nivel en cada ciclo -> ¿Gano el nivel?
 					if (administrarNivel(paredes, zonas, cajas, jugador, j_posAnterior, caja1_posAnterior, caja2_posAnterior, caja3_posAnterior, caja4_posAnterior, rect_movimientoEnX, rect_movimientoEnY)):
 						vecesCantoVictoria = vecesCantoVictoria + 1  #Le sumamos uno a las veces que "Canto victoria"
 						if (vecesCantoVictoria == 1): #Si ya la canto una vez, no puede cantarla más hasta que reincie el nivel o pase a uno nuevo (como dijimos antes, esto se pretende solucionar)
@@ -485,7 +548,7 @@ def main():
 				#Metodo que nos dibuja y actualiza todo en la pantalla		
 					actualizarNivel(ventana, jugador_render, cajas_render, zonas_render, paredes_render, piso_render, fondo)
 
-			if (juego == 4): 
+			if (juego == 4):
 				for event in pygame.event.get():
 					if event.type == pygame.MOUSEBUTTONDOWN:
 						if cursor.colliderect(boton_1.rect):
