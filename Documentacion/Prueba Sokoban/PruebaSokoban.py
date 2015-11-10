@@ -242,36 +242,36 @@ def cargarNivel2():
 #cargarNivel3() -> Crea y setea las imagenes, sonidos y posiciones de todos los elementos del nivel 3.
 def cargarNivel3():
     #Jugador
-    imagenJugadorPrincipal = pygame.image.load("")
+    imagenJugadorPrincipal = pygame.image.load("NivelStarWars/chewbacca.png")
     jugadorPrincipal= Jugador(imagenJugadorPrincipal, 296, 240)
-    jugadorPrincipal.sonidoPerdio = pygame.mixer.Sound("")
-    jugadorPrincipal.sonidoGano = pygame.mixer.Sound("")
+    jugadorPrincipal.sonidoPerdio = pygame.mixer.Sound("NivelStarWars/chewbacca.wav")
+    jugadorPrincipal.sonidoGano = pygame.mixer.Sound("NivelStarWars/star_trek_victoria.wav")
     jugadorPrincipal.sonidoPerdio.set_volume(0.05)
     jugadorPrincipal.sonidoGano.set_volume(0.05)
     #Cajas
-    imagenCaja = pygame.image.load("")
+    imagenCaja = pygame.image.load("NivelStarWars/cajaRobot.png")
     caja1= RectanguloConMovimiento(imagenCaja, 248, 192)
     caja2= RectanguloConMovimiento(imagenCaja, 248, 240)
     caja3= RectanguloConMovimiento(imagenCaja, 296, 288)
-    caja4= RectanguloConMovimiento(imagenCaja, 344, 288)
-    caja1.sonidoColision = pygame.mixer.Sound("")
-    caja2.sonidoColision = pygame.mixer.Sound("")
-    caja3.sonidoColision = pygame.mixer.Sound("")
-    caja4.sonidoColision = pygame.mixer.Sound("")
+    caja4= RectanguloConMovimiento(imagenCaja, 344, 192)
+    caja1.sonidoColision = pygame.mixer.Sound("NivelStarWars/colision_SableCaja.wav")
+    caja2.sonidoColision = pygame.mixer.Sound("NivelStarWars/colision_SableCaja.wav")
+    caja3.sonidoColision = pygame.mixer.Sound("NivelStarWars/colision_SableCaja.wav")
+    caja4.sonidoColision = pygame.mixer.Sound("NivelStarWars/colision_SableCaja.wav")
     caja1.sonidoColision.set_volume(0.05)
     caja2.sonidoColision.set_volume(0.05)
     caja3.sonidoColision.set_volume(0.05)
     caja4.sonidoColision.set_volume(0.05)
     #Zonas de apoyo
-    imagenZona = pygame.image.load("")
+    imagenZona = pygame.image.load("NivelStarWars/stormTrooper.png")
     zona1 = ZonaApoyo(imagenZona, 152, 240)
     zona2 = ZonaApoyo(imagenZona, 248, 96)
     zona3 = ZonaApoyo(imagenZona, 296, 336)
     zona4 = ZonaApoyo(imagenZona, 392, 192)
     #Paredes
-    imagenPared_48x96 = pygame.image.load("")
-    imagenPared_144x48 = pygame.image.load("")
-    imagenPared_48x48 = pygame.image.load("")
+    imagenPared_48x96 = pygame.image.load("NivelStarWars/SWpared 48x96.png")
+    imagenPared_144x48 = pygame.image.load("NivelStarWars/SWpared 144x48.png")
+    imagenPared_48x48 = pygame.image.load("NivelStarWars/SWpared 48x48.png")
     pared_a_celeste = Rectangulo(imagenPared_144x48, 200, 48)
     pared_ai_azul = Rectangulo(imagenPared_48x96, 200, 96)
     pared_ad_azul = Rectangulo(imagenPared_48x48, 296, 96)
@@ -285,15 +285,15 @@ def cargarNivel3():
     pared_abd_azul = Rectangulo(imagenPared_48x96, 344, 288)
     pared_ab_celeste = Rectangulo(imagenPared_144x48, 248, 384)
     #Piso
-    imagenPiso = pygame.image.load("")
-    piso1 = Rectangulo(imagenPiso, 144, 48)
+    imagenPiso = pygame.image.load("NivelStarWars/piso.png")
+    piso1 = Rectangulo(imagenPiso, 152, 96)
     #Fondo
-    imagenFondo = pygame.image.load("")
+    imagenFondo = pygame.image.load("NivelStarWars/fondo.png")
     fondoNivel3 = Rectangulo(imagenFondo, 0, 0)
-    fondoNivel3.sonidoFondo = pygame.mixer.music.load("")
+    fondoNivel3.sonidoFondo = pygame.mixer.music.load("NivelStarWars/Marcha imperial.mp3")
     pygame.mixer.music.set_volume(0.05)
     pygame.mixer.music.play(10)
-#Lo mismo que en la funcion anterior. Notese que guardamos ciertas cosas en listas. Generalmente los objetos de un cierto tipo que a la vez son más de uno.
+	#Lo mismo que en la funcion anterior. Notese que guardamos ciertas cosas en listas. Generalmente los objetos de un cierto tipo que a la vez son más de uno.
     fondo = fondoNivel3
     jugador = jugadorPrincipal
     piso = piso1
@@ -402,10 +402,8 @@ def actualizarMenu(ventana, cursor1, boton_1, boton_3, boton_4, fondo):
 	boton_4.update(ventana,cursor1)
 	cursor1.update()
 
-def actualizarCreditos(ventana, cursor1, boton_1, fondo):
+def actualizarCreditos(ventana, fondo):
 	fondo.update(ventana)
-	boton_1.update(ventana, cursor1)
-	cursor1.update()
 
 def main():
 	pygame.init() #Iniciamos pygame
@@ -420,18 +418,20 @@ def main():
 	caja3_posAnterior = (0, 0)
 	caja4_posAnterior = (0, 0)
 
-	for juego in range(1, 5): #"For" que administrar los niveles del juego
+	for juego in range(1, 6): #"For" que administrar los niveles del juego
 		if (juego == 1):
 			cursor, boton_1, boton_3, boton_4, fondo= cargarMenu()
 		if (juego == 2): #Si el ciclo del for es 1 entonces hay que cargar el nivel 1
 			paredes, zonas, cajas, jugador, piso, fondo = cargaNivel1() #Decimos que todas estas variables quedaran definidas por el retorno de esta funcion
 		if (juego == 3): #Si el ciclo del for es 1 entonces hay que cargar el nivel 2
 			paredes, zonas, cajas, jugador, piso, fondo = cargarNivel2()
-		if (juego == 4):
+		if (juego == 4): #Si el ciclo del for es 1 entonces hay que cargar el nivel 2
+			paredes, zonas, cajas, jugador, piso, fondo = cargarNivel3()
+		if (juego == 5):
 			cursor, boton_1, fondo = cargarCreditos()
 
 
-		if ((juego > 1) and (juego < 4)):
+		if ((juego > 1) and (juego < 5)):
 			#RenderPlain nos permite formar grupos de objetos tipo "sprite"
 			piso_render = pygame.sprite.RenderPlain((piso)) #Entonces por ejemplo, piso_render = contendra un grupo dibujable de 1 objeto (hay un solo piso por nivel)
 			paredes_render = pygame.sprite.RenderPlain((paredes)) #paredes_render -> contendra un grupo dibujable de "n" objetos pared
@@ -467,7 +467,7 @@ def main():
 
 				actualizarMenu(ventana, cursor, boton_1, boton_3, boton_4, fondo)
 
-			if ((juego > 1) and (juego < 4)):   	
+			if ((juego > 1) and (juego < 5)):   	
 				rect_movimientoEnX = 0 #Va a guardar el movimiento que debe realizarse en "x" segun la tecla pulsada
 				rect_movimientoEnY = 0 #Va a guardar el movimiento que debe realizarse en "y" segun la tecla pulsada
 
@@ -511,27 +511,38 @@ def main():
 								jugador.setearPosicionInicial(148,192) #Movemos el jugador a su posicion inicial en el nivel 1
 							if(juego == 3):
 								jugador.setearPosicionInicial(144,48)
+							if(juego == 4):
+								jugador.setearPosicionInicial(296, 240)
 							for k in range(len(cajas)): #Y, segun el nivel, las cajas
 								if (k == 0):
 									if (juego == 2):
 										cajas[k].setearPosicionInicial(148,144)
 									if (juego == 3):
 										cajas[k].setearPosicionInicial(192,96)
+									if (juego == 4):
+										cajas[k].setearPosicionInicial(248, 192)
 								if (k == 1):
 									if (juego == 2):
 										cajas[k].setearPosicionInicial(244,192)
 									if (juego == 3):
 										cajas[k].setearPosicionInicial(192,144)
+									if (juego == 4):
+										cajas[k].setearPosicionInicial(248, 240)
 								if (k == 2):
 									if (juego == 2):
 										cajas[k].setearPosicionInicial(388,192)
 									if (juego == 3):
 										cajas[k].setearPosicionInicial(240,96)
+									if (juego == 4):
+										cajas[k].setearPosicionInicial(296, 288)
 								if (k == 3):
 									if (juego == 2):
 										cajas[k].setearPosicionInicial(340,240)
+									if (juego == 4):
+										cajas[k].setearPosicionInicial(344, 192)
 						if (event.key == pygame.K_n): #Si apreto la letra "N" (pasar al siguiente nivel) -> Preguntamos si el nivel actual se completo. Sino, no puede.
 							if (administrarNivel(paredes, zonas, cajas, jugador, j_posAnterior, caja1_posAnterior, caja2_posAnterior, caja3_posAnterior, caja4_posAnterior, rect_movimientoEnX, rect_movimientoEnY)):
+								jugador.sonidoGano.stop()
 								salir_nivel = True #Salimos del nivel para pasar al nivel 2
 						if (event.key == K_ESCAPE):
 							pygame.quit()
@@ -548,18 +559,18 @@ def main():
 				#Metodo que nos dibuja y actualiza todo en la pantalla		
 					actualizarNivel(ventana, jugador_render, cajas_render, zonas_render, paredes_render, piso_render, fondo)
 
-			if (juego == 4):
+			if (juego == 5):
 				for event in pygame.event.get():
-					if event.type == pygame.MOUSEBUTTONDOWN:
-						if cursor.colliderect(boton_1.rect):
-							boton_1.sonidoBoton.play()
-							juego = 1
-							salir_nivel = True
+					if (event.type == pygame.KEYDOWN): 
+						if (event.key == K_ESCAPE):
+							pygame.quit()
+							sys.exit()
 					if (event.type == pygame.QUIT):
 						pygame.quit()
 						sys.exit()
+					
 
-					actualizarCreditos(ventana, cursor, boton_1, fondo)	
+				actualizarCreditos(ventana, fondo)	
 
 			pygame.display.update()
 
